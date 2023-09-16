@@ -1,0 +1,48 @@
+.log_section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh; /* Высота секции на 100% видимой высоты */
+}
+.log_window h2{
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 46px;
+    letter-spacing: 0em;
+    margin-bottom: 30px;
+    text-align: center;
+}
+  
+.log_window{
+    text-align: center;
+    padding: 20px;
+}
+  
+.log_inp{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+  
+.log_window input{
+    padding: 10px 50px 10px 20px;
+    font-size: 14px;
+    border: 1px solid #E7E7E7;
+    border-radius: 4px 0px 0px 4px;
+    margin-bottom: 15px;
+
+}
+.inlog_btn{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+}
+.inlog_btn button{
+    background-color: #00A2DC;
+    width: 100%;
+}
+.log_button{
+    color: white;
+    padding: 12px;
+    height: 100%;
+}
