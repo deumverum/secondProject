@@ -1,0 +1,117 @@
+.prg_blog{
+    display: flex;
+    background-color: #f8f9fa;
+}
+.left_side_prg{
+    margin-right: 15px;
+    background-color: #FFFFFF;
+    margin-top: 50px;
+}
+.blog_tittle{
+    text-align: left;
+    margin-bottom: 50px;
+    margin-top: 40px;
+}
+.blog_tittle h2{
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 46px;
+    letter-spacing: 0em;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.blog_tittle h4{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.blog_info img{
+    width: 100%; /* Ширина изображения займет всю доступную ширину дива */
+    height: auto; /* Высота будет автоматически регулироваться, чтобы сохранить соотношение сторон */
+    object-fit: cover; /* Заполнение всей области дива */
+}
+.blog_info{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.blog_info h3{
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.blog_info p{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.view_line{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 50px;
+}
+.view_line_icon{
+    display: flex;
+    align-items: center;
+}
+.view_line_icon p{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-left: 15px;
+}
+.right_side_prg{
+    margin-left: 15px;
+    width: 40%;
+    background-color: #FFFFFF;
+    margin-top: 50px;
+    height: 25%;
+    -webkit-box-shadow: -4px 17px 10px 7px rgba(34, 60, 80, 0.11);
+    -moz-box-shadow: -4px 17px 10px 7px rgba(34, 60, 80, 0.11);
+    box-shadow: -4px 17px 10px 7px rgba(34, 60, 80, 0.11)
+}
+.right_side_prg h2{
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 46px;
+    letter-spacing: 0em;
+    margin-bottom: 30px;
+    text-align: left;
+    margin-top: 40px;
+    margin-left: 15px;
+}
+.right_side_links a{
+    margin-left: 15px;
+    display: block;
+}
+
+.right_side_links li{
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.right_side_links a{
+    text-decoration: none;
+    color: #333;
+    padding: 5px 0;
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom-color 0.3s; 
+}
+  
+.right_side_links a:hover{
+    border-bottom-color: #00A2DC;
+}
