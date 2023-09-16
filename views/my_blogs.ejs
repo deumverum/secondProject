@@ -4,23 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('partials/head.ejs') %>
-    <title>Programming Blog</title>
+    <title>My Blogs</title>
 </head>
 <body>
     <%- include('partials/header.ejs') %>
     <section class="prg_blog container">
         <div class="left_side_prg">
-            <div class="blog_tittle">
-                <h2>Блоги по программированию</h2>
-                <h4>
-                    Популярные и лучшие публикации по программированию для начинающих
-                    <br>
-                    и профессиональных программистов и IT-специалистов.
-                </h4>
+            <div class="myblog_tittle">
+                <h2>Мои блоги</h2>
+                <div class="add_new_blog">
+                    <a href="/addnewblog">
+                        <div class="btn_addblog">
+                            <button>Новый блог</button>
+                        </div>
+                    </a>
+                </div>
             </div>
             <div class="blog_info">
                 <img src="/img/image1.png" alt="">
-                <h3>Обзор Report Manager от Webix</h3>
+                <div class="edit_blog">
+                    <h3>Обзор Report Manager от Webix</h3>
+                    <div class="menu-container">
+                        <div class="edit_blog_btn">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <p>Ещё</p>
+                        </div>
+                        <div class="menu-options">
+                            <div class="option edit">Редактировать</div>
+                            <div class="option delete">Удалить</div>
+                        </div>
+                    </div>
+                </div>
                 <p>Осень 2020 года стала плодотворным временем для специалистов Webix.</p>
                 <p>Команда Webix выпустила восьмую версию библиотеки пользовательского интерфейса Webix с двумя новыми комплексными виджетами. Первый - зто Scheduler, о котором мы подробно говорили ранее. Второй виджет - это Gantt chart в JavaScript. Подробную информацию об этом виджете Вы можете найти в статье. </p>
                 <p>Ноябрь продолжает тенденцию, и мы спешим поделиться с Вами новым комплексным виджетом Report Manager. Давайте рассмотрим ег</p>
@@ -78,24 +92,22 @@
                 </div>
             </div>
         </div>
-        <div class="right_side_prg"> 
-            <h2>Категории</h2>
-            <div class="right_side_links">
-                <ul>
-                    <li><a href="#">Прогнозы в IT</a></li>
-                    <li><a href="#">Веб-разработка</a></li>
-                    <li><a href="#">Мобильная разработка</a></li>
-                    <li><a href="#">Фриланс</a></li>
-                    <li><a href="#">Алгоритмы</a></li>
-                    <li><a href="#">Тестирование IT систем</a></li>
-                    <li><a href="#">Разработка игр</a></li>
-                    <li><a href="#">Дизайн и юзабилити</a></li>
-                    <li><a href="#">Искуственный интеллект</a></li>
-                    <li><a href="#">Машинное обучение</a></li>
-                </ul>
+        <div class="profile_info"> 
+            <div class="profile_ava">
+                <img src="/img/avatar2.jpg" alt="">
+            </div>
+            <p class="bold">Елнур Сеитжанов</p>
+            <p>В основном пишу про веб - разработку, на React & Redux</p>
+            <p>285 постов за все время</p>
+            <div class="edit_profile">
+                <a href="/editprofile">
+                    <div class="btn_edit_profile">
+                        <button>Редактировать</button>
+                    </div>
+                </a>
             </div>
         </div>
-
     </section>
+    <script src="/js/editblog.js"></script>
 </body>
 </html>

@@ -1,26 +1,49 @@
 <header class="header container">
-    <div class="logo">
-        <h1>Decode Blog</h1>
-    </div>
-    <div class="search_place">
-        <input type="text" placeholder="Поиск по блогам">
-        <div class="search_right_side">
-            <button class="search_button">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <p>Найти</p>
-            </button>
+    <% if (pageName === 'my_blogs' , pageName === 'add_newblog') { %>
+        <div class="logo">
+            <a href="/programmingblog">
+                <h1 class="logo_h1">Decode Blog</h1>
+            </a>
         </div>
-    </div>
-    <div class="log_reg">
-        <a href="/register">
-            <div class="btn">
-                <button>Регистрация</button>
+        <div class="search_place">
+            <input type="text" placeholder="Поиск по блогам">
+            <div class="search_right_side">
+                <button class="search_button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Найти</p>
+                </button>
             </div>
-        </a>
-        <a href="/login">
-            <div class="btn">
-                <button>Вход</button>
+        </div>
+        <div>
+            <img src="/img/avatar1.jpg" alt="">
+        </div>
+    <% } else { %>
+        <div class="logo">
+            <a href="/programmingblog">
+                <h1 class="logo_h1">Decode Blog</h1>
+            </a>
+        </div>
+        <div class="search_place">
+            <input type="text" placeholder="Поиск по блогам">
+            <div class="search_right_side">
+                <button class="search_button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Найти</p>
+                </button>
             </div>
-        </a>
-    </div>
+        </div>
+        <div class="log_reg">
+            <a href="/register">
+                <div class="btn">
+                    <button>Регистрация</button>
+                </div>
+            </a>
+            <a href="/login">
+                <div class="btn">
+                    <button>Вход</button>
+                </div>
+            </a>
+        </div>
+    <% } %>
+    <!-- Остальное содержимое header.ejs -->
 </header>

@@ -1,0 +1,124 @@
+.log_section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh; /* Высота секции на 100% видимой высоты */
+}
+.add_window h2{
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 46px;
+    letter-spacing: 0em;
+    margin-bottom: 30px;
+    text-align: left;
+}
+  
+.add_window{
+    text-align: center;
+    padding: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 50%;
+}
+  
+.log_inp{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+  
+.add_window input{
+    padding: 10px 50px 10px 20px;
+    font-size: 14px;
+    border: 1px solid #E7E7E7;
+    border-radius: 4px 0px 0px 4px;
+    margin-bottom: 15px;
+}
+.create_btn{
+    width: 20%;
+    height: 100%;
+    border-radius: 4px;
+}
+.create_btn button{
+    background-color: #00A2DC;
+    width: 100%;
+}
+.choose_btn{
+    background-color: rgb(251, 255, 2);
+    width: 30%;
+    padding: 15px;
+    height: 100%;
+    margin-bottom: 15px;
+}
+.description-input {
+    height: 80px;
+}
+.description-input::placeholder {
+    font-size: 14px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    transform: translateY(0%);
+}
+
+
+
+
+/* Стили для выпадающего списка */
+.category-dropdown {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+}
+
+.category-list {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-list li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.category-list li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Стили для иконки стрелочки */
+#category-dropdown-icon {
+    position: absolute;
+    top: 40%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+/* Показывать выпадающий список при фокусировке на инпуте */
+#category-input:focus + .category-list {
+    display: block;
+}
+.category-dropdown input{
+    padding: 10px 50px 10px 20px;
+    font-size: 14px;
+    border: 1px solid #E7E7E7;
+    border-radius: 4px 0px 0px 4px;
+    margin-bottom: 15px;
+}
+#category-input{
+    width: 90%;
+}
+.category-dropdown input{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #E7E7E7;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
