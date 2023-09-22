@@ -1,11 +1,15 @@
 const express = require('express')
 const router = express.Router();
+const Categories = require('../Categories/Categories')
 
-router.get('/' , (req ,res) => {
+router.get('/' , async(req ,res) => {
+
     res.render('programming_blog.ejs', { pageName: 'programming_blog' })
 })
-router.get('/programmingblog', (req, res) => {
-    res.render('programming_blog.ejs', { pageName: 'programming_blog' });
+router.get('/programmingblog', async(req, res) => {
+    const allCategories = await Categories.find()
+    console.log(allCategories);
+    res.render('programming_blog.ejs', { pageName: 'programming_blog', Categories: allCategories });
 });
 
 router.get('/login', (req, res) => {

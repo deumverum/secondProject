@@ -82,20 +82,12 @@
             <h2>Категории</h2>
             <div class="right_side_links">
                 <ul>
-                    <li><a href="#">Прогнозы в IT</a></li>
-                    <li><a href="#">Веб-разработка</a></li>
-                    <li><a href="#">Мобильная разработка</a></li>
-                    <li><a href="#">Фриланс</a></li>
-                    <li><a href="#">Алгоритмы</a></li>
-                    <li><a href="#">Тестирование IT систем</a></li>
-                    <li><a href="#">Разработка игр</a></li>
-                    <li><a href="#">Дизайн и юзабилити</a></li>
-                    <li><a href="#">Искуственный интеллект</a></li>
-                    <li><a href="#">Машинное обучение</a></li>
+                    <% Categories.forEach(category => {%>
+                    <li><a href="#"><%=category.name%></a></li>
+                    <% }) %>
                 </ul>
             </div>
         </div>
-
     </section>
 </body>
 </html>
