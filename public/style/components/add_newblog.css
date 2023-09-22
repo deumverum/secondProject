@@ -20,7 +20,7 @@
     margin-right: 30px;
     width: 50%;
 }
-  
+    
 .log_inp{
     display: flex;
     flex-direction: column;
@@ -53,13 +53,13 @@
 .description-input {
     height: 80px;
 }
-.description-input::placeholder {
+/* .description-input::placeholder {
     font-size: 14px;
     position: absolute;
     top: 15px;
     left: 15px;
     transform: translateY(0%);
-}
+} */
 
 
 
@@ -92,6 +92,7 @@
 
 /* Стили для иконки стрелочки */
 #category-dropdown-icon {
+    font-size: 15px;
     position: absolute;
     top: 40%;
     right: 10px;
@@ -111,7 +112,7 @@
     margin-bottom: 15px;
 }
 #category-input{
-    width: 90%;
+    width: 100%;
 }
 .category-dropdown input{
     width: 100%;

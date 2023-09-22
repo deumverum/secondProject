@@ -1,0 +1,14 @@
+.regorlog_message{
+    background: #FFF3CD;
+}
+.regorlog_message p{
+    color: #856404;
+    padding: 20px;
+}
+.regorlog_message a{
+    color: #00A2DC;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 46px;
+    letter-spacing: 0em
+}
