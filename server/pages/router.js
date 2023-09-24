@@ -16,10 +16,11 @@ router.get('/login', (req, res) => {
     res.render('login.ejs', { pageName: 'login' });
 });
 
-
 router.get('/register', (req, res) => {
-    res.render('register.ejs', { pageName: 'register' });
+    const { message, error, details } = req.query;
+    res.render('register.ejs', { pageName: 'register', message, error, details });
 });
+
 
 router.get('/myblogs', (req, res) => {
     res.render('my_blogs.ejs', { pageName: 'my_blogs' });

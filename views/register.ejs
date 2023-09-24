@@ -11,18 +11,29 @@
     <section class="log_section">
         <div class="log_window">
             <h2>Регистрация</h2>
-            <div class="log_inp">
-                <input type="text" placeholder="Введите e-mail">
-                <input type="text" placeholder="Введите полное имя">
-                <input type="text" placeholder="Введите e-mail">
-                <input type="text" placeholder="Подтвердите пароль">
-            </div>
-            <div class="inlog_btn">
-                <button class="log_button">
-                    <p>Зарегестрироваться</p>
-                </button>
-            </div>
+            <form action="/api/signup" method = "POST">
+                <div class="log_inp">
+                    <input type="text" name="email" placeholder="Введите e-mail">
+                    <input type="text" name="full_name" placeholder="Введите полное имя">
+                    <input type="password" name="password" placeholder="Введите пароль">
+                    <input type="password" name="re_password" placeholder="Подтвердите пароль">                    
+                </div>
+                <div class="inlog_btn">
+                    <button class="log_button">
+                        <p>Зарегестрироваться</p>
+                    </button>
+                </div>
+            </form>
         </div>
+        <% if (message) { %>
+            <script>
+                alert("<%= message %>");
+            </script>
+        <% } else if (error) { %>
+            <script>
+                alert("Ошибка: <%= error %>\nДетали ошибки: <%= details %>");
+            </script>
+        <% } %>
     </section>
 </body>
 </html>
