@@ -12,8 +12,8 @@
         <div class="log_window">
             <h2>Вход</h2>
             <div class="log_inp">
-                <input type="text" placeholder="Введите e-mail">
-                <input type="text" placeholder="Введите пароль">
+                <input type="text" placeholder="Введите e-mail" required pattern=".*@.*">
+                <input type="password" placeholder="Введите пароль" required>
             </div>
             <div class="inlog_btn">
                 <button class="log_button">
@@ -22,5 +22,10 @@
             </div>
         </div>
     </section>
+    <% if (message) { %>
+        <script>
+            alert("<%= message %>");
+        </script>
+    <% } %>
 </body>
 </html>

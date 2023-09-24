@@ -37,7 +37,7 @@ const signUp = async (req, res) => {
         await user.save();
 
         // Отправка успешного ответа
-        return res.redirect('/register?message=Регистрация успешна');
+        return res.redirect('/login?message=Регистрация успешна');
     } catch (error) {
         // Обработка других ошибок
         const details = 'Попробуйте заново';

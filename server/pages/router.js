@@ -13,7 +13,8 @@ router.get('/programmingblog', async(req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    res.render('login.ejs', { pageName: 'login' });
+    const { message } = req.query;
+    res.render('login.ejs', { pageName: 'login', message });
 });
 
 router.get('/register', (req, res) => {
