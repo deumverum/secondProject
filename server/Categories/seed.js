@@ -1,27 +1,33 @@
-const Categories = require('./Categories')
+const Categories = require('./Categories');
 const data = [
     'Прогнозы в IT',
     'Веб-разработка',
     'Мобильная разработка',
     'Фриланс',
-    'Алгоритмы',
-    'Тестирование IT систем',
     'Разработка игр',
     'Дизайн и юзабилити',
     'Искуственный интеллект',
-    'Машинное обучение'
-]
+    'Машинное обучение',
+    'Алгоритмы',
+    'Тестирование IT систем'
+];
 
-async function writeDatacategory(){
-    const length = await Categories.count();
-    if (length == 0) {
-        data.map((item , index) => {
-            new Categories({
+async function writeDataCategory() {
+    const length = await Categories.countDocuments();
+
+    if (length === 0) {
+        for (let index = 0; index < data.length; index++) {
+            const item = data[index];
+            await new Categories({
                 name: item,
-                key: index,
-            }).save()
-        })
+                key: index
+            }).save();
+        }
+        console.log('Данные сохранены в базу данных.');
+    } else {
+        console.log('Данные уже существуют в базе данных. Ничего не сохранено.');
     }
 }
 
-module.exports = writeDatacategory
+module.exports = writeDataCategory;
+

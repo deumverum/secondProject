@@ -45,4 +45,8 @@ const signUp = async (req, res) => {
     }
 };
 
-module.exports = { getRegisterPage, signUp };
+const signIn = (req , res) =>{
+    res.redirect('/myblogs')
+}
+
+module.exports = { getRegisterPage, signUp, signIn};

@@ -11,15 +11,17 @@
     <section class="log_section">
         <div class="log_window">
             <h2>Вход</h2>
-            <div class="log_inp">
-                <input type="text" placeholder="Введите e-mail" required pattern=".*@.*">
-                <input type="password" placeholder="Введите пароль" required>
-            </div>
-            <div class="inlog_btn">
-                <button class="log_button">
-                    <p>Войти</p>
-                </button>
-            </div>
+            <form action="/api/signin" method = "POST">
+                <div class="log_inp">
+                    <input type="email" placeholder="Введите e-mail" required>
+                    <input type="password" placeholder="Введите пароль" required>
+                </div>
+                <div class="inlog_btn">
+                    <button class="log_button">
+                        <p>Войти</p>
+                    </button>
+                </div>
+            </form>
         </div>
     </section>
     <% if (message) { %>
