@@ -1,5 +1,5 @@
 <header class="header container">
-    <% if (pageName === 'my_blogs' , pageName === 'add_newblog' , pageName === 'profile_serf') { %>
+    <% if (user._id && user.full_name.length > 0) { %>
         <div class="logo">
             <a href="/programmingblog">
                 <h1 class="logo_h1">Decode Blog</h1>
@@ -14,8 +14,19 @@
                 </button>
             </div>
         </div>
-        <div>
-            <img src="/img/avatar1.jpg" alt="">
+        <div class="prof_info">
+            <div class="log_reg">
+                <a href="/myblogs/<%=user._id %>">
+                    <div class="btn">
+                        <button>Профиль</button>
+                    </div>
+                </a>
+                <a href="/api/signout">
+                    <div class="btn">
+                        <button>Выйти</button>
+                    </div>
+                </a>
+            </div>
         </div>
     <% } else { %>
         <div class="logo">
@@ -47,3 +58,4 @@
     <% } %>
     <!-- Остальное содержимое header.ejs -->
 </header>
+

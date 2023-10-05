@@ -60,3 +60,6 @@
 .log_reg a{
     margin-left: 20px;
 }
+.prof_info{
+    display: flex;
+}

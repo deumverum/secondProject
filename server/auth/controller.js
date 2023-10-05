@@ -45,8 +45,18 @@ const signUp = async (req, res) => {
     }
 };
 
+const signOut = (req, res) => {
+    req.logout(function(err){
+        if(err){
+            console.log(err);
+        }
+    });
+    res.redirect('/programmingblog');
+};
+
+
 const signIn = (req , res) =>{
-    res.redirect('/myblogs')
+    res.redirect(`/myblogs/${req.user._id}`)
 }
 
-module.exports = { getRegisterPage, signUp, signIn};
+module.exports = { getRegisterPage, signUp, signIn , signOut};

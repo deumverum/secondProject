@@ -11,8 +11,23 @@ passport.use(new localStrategy(
         User.findOne({email}).then(user => {
             bcrypt.compare(password, user.password, function(err, result) {
                 if (err) {return done(err)}
-                console.log(result);
+                if(result) {return done(null , user)} 
             });
+        }).catch(e => {
+            {return done(e)}
         })
     }
 ))
+
+passport.serializeUser(function(user , done) {
+    console.log(user);
+    done(null , user._id);
+})
+
+passport.deserializeUser(function(id, done) {
+    User.findById(id).then(user => {
+        done(null, user);
+    }).catch(err => {
+        done(err, null);
+    });
+});
