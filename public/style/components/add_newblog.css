@@ -43,13 +43,29 @@
     background-color: #00A2DC;
     width: 100%;
 }
-.choose_btn{
+/* Скрываем стандартный input[type="file"] */
+.choose_btn input[type="file"] {
+    display: none;
+}
+
+/* Стили для кастомной кнопки */
+.choose_btn {
     background-color: rgb(251, 255, 2);
     width: 30%;
     padding: 15px;
     height: 100%;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
     margin-bottom: 15px;
 }
+
+/* Стили для текста в кнопке */
+.choose_btn p {
+    margin: 0;
+}
+
 .description-input {
     height: 80px;
 }

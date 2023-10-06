@@ -56,26 +56,25 @@
                         В отличие от обычных виджетов пользовательского интерфейса JavaScript, комплексные виджеты - это полноценные приложения, которые не требуют дополнительной настройки и кастомизации.
                     </p>
                 </div>
-                <div class="add_comment">
-                    <input type="text" placeholder="Введите текст комментария">
-                    <button>Отправить</button>
-                </div>
+                <% if (user && user._id) { %>
+                    <div class="add_comment">
+                        <input type="text" placeholder="Введите текст комментария">
+                        <button>Отправить</button>
+                    </div>
+                <% } else { %>
+                    <div class="regorlog_message">
+                        <p>Чтобы оставить комментарий, <a href="/register">зарегистрируйтесь</a> или <a href="/login">войдите</a> в аккаунт</p>
+                    </div>
+                <% } %>                
             </div>
         </div>
         <div class="right_side_prg"> 
             <h2>Категории</h2>
             <div class="right_side_links">
                 <ul>
-                    <li><a href="#">Прогнозы в IT</a></li>
-                    <li><a href="#">Веб-разработка</a></li>
-                    <li><a href="#">Мобильная разработка</a></li>
-                    <li><a href="#">Фриланс</a></li>
-                    <li><a href="#">Алгоритмы</a></li>
-                    <li><a href="#">Тестирование IT систем</a></li>
-                    <li><a href="#">Разработка игр</a></li>
-                    <li><a href="#">Дизайн и юзабилити</a></li>
-                    <li><a href="#">Искуственный интеллект</a></li>
-                    <li><a href="#">Машинное обучение</a></li>
+                    <% Categories.forEach(category => {%>
+                    <li><a href="#"><%=category.name%></a></li>
+                    <% }) %>
                 </ul>
             </div>
         </div>

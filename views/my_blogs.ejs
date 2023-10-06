@@ -14,17 +14,36 @@
                 <h2>Мои блоги</h2>
                 <div class="add_new_blog">
                     <a href="/addnewblog">
+                        <% 
+                            if(loginUser._id == user.id){                       
+                        %> 
                         <div class="btn_addblog">
                             <button>Новый блог</button>
                         </div>
+                        <%       
+                            }
+                        %>
                     </a>
                 </div>
             </div>
             <div class="blog_info">
+                <% if (blogs.length > 0) { %>
+                    <% blogs.forEach(blog => { %>
+                      <div class="blog">
+                        <h3><%= blog.title %></h3>
+                        <!-- Другие данные блога -->
+                      </div>
+                    <% }); %>
+                  <% } else { %>
+                    <p>Вы ещё не создали ни одного блога.</p>
+                  <% } %>                  
                 <img src="/img/image1.png" alt="">
                 <div class="edit_blog">
                     <h3>Обзор Report Manager от Webix</h3>
                     <div class="menu-container">
+                        <% 
+                        if(loginUser._id == user.id){                       
+                        %> 
                         <div class="edit_blog_btn">
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                             <p>Ещё</p>
@@ -33,6 +52,9 @@
                             <div class="option edit">Редактировать</div>
                             <div class="option delete">Удалить</div>
                         </div>
+                        <%       
+                            }
+                        %>
                     </div>
                 </div>
                 <p>Осень 2020 года стала плодотворным временем для специалистов Webix.</p>
@@ -99,6 +121,9 @@
             <p class="bold"><%=user.full_name %></p>
             <p>В основном пишу про веб - разработку, на React & Redux</p>
             <p>285 постов за все время</p>
+            <% 
+            if(loginUser._id == user.id){                       
+            %> 
             <div class="edit_profile">
                 <a href="/editprofile">
                     <div class="btn_edit_profile">
@@ -106,6 +131,9 @@
                     </div>
                 </a>
             </div>
+            <%       
+                }
+            %>
         </div>
     </section>
     <script src="/js/editblog.js"></script>

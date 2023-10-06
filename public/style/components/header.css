@@ -41,11 +41,11 @@
 }
 .log_reg{
     display: flex;
+    align-items: center;
 }
 .log_reg div{
     background-color: #00A2DC;
     width: 100%;
-    height: 100%;
     padding: 12px;
     border-radius: 4px;
     text-align: center;
@@ -60,6 +60,7 @@
 .log_reg a{
     margin-left: 20px;
 }
-.prof_info{
-    display: flex;
+
+.btn img{
+    display: block;
 }
