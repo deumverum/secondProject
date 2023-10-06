@@ -6,6 +6,7 @@ const BlogSchema = new mongoose.Schema({
     category: { type: Schema.Types.ObjectId, ref: 'categories' },
     image: String,
     overview: String,
+    author: { type: Schema.Types.ObjectId, ref: 'users' },
 });
 
 module.exports = mongoose.model('blog', BlogSchema);

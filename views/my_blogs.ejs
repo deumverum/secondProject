@@ -31,7 +31,8 @@
                     <% blogs.forEach(blog => { %>
                       <div class="blog">
                         <h3><%= blog.title %></h3>
-                        <!-- Другие данные блога -->
+                        <img src="<%= blog.image %>" alt="">
+                        <p><%= blog.overview %></p>
                       </div>
                     <% }); %>
                   <% } else { %>

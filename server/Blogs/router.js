@@ -6,6 +6,6 @@ const { createBlog } = require('./controller');
 const { isAuth } = require('../auth/middlewares');
 const { getMyBlogs } = require('./controller');
 
-router.post('/api/new', isAuth , upload.single('image'), createBlog , getMyBlogs);
+router.post('/api/new', isAuth , upload.single('image'), createBlog );
 
 module.exports = router;

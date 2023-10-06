@@ -10,8 +10,9 @@ const createBlog = (req , res) => {
         new Blog({
             title: req.body.title,
             category: req.body.categoryId,
-            image: `${req.file.destination}/${req.file.filename}`,
+            image: `/img/blogs/${req.file.filename}`,
             overview: req.body.overview,
+            author: req.user.id,
         }).save()
         .then(() => {
             res.redirect(`/myblogs/${req.user._id}`);
@@ -25,20 +26,6 @@ const createBlog = (req , res) => {
     }
 }
 
-// const getMyBlogs = (req, res) => {
-//     Blog.find({ author: req.user._id })
-//         .then(blogs => {
-//             console.log(blogs); // Вывести блоги в консоль для отладки
-//             res.render('myblogs', { blogs });
-//         })
-//         .catch(err => {
-//             console.error(err);
-//             res.redirect('/error');
-//         });
-// };
-
-
 module.exports = {
     createBlog,
-    // getMyBlogs,
 };

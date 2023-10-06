@@ -24,8 +24,8 @@ router.get('/register', (req, res) => {
 router.get('/myblogs/:id', async (req, res) => {
     const user = await User.findById(req.params.id);
     if (user) {
-        const blogs = await Blog.find({ author: user._id });
-        res.render('my_blogs.ejs', { pageName: 'my_blogs', user: user, loginUser: req.user, blogs: blogs });
+        const blogs = await Blog.find({ author: user.id });
+        res.render('my_blogs.ejs', { pageName: 'my_blogs', user: user, loginUser: req.user, blogs: blogs , author: user.id});
     } else {
         res.redirect('/not-found');
     }
