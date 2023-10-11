@@ -34,6 +34,17 @@
     border-radius: 4px 0px 0px 4px;
     margin-bottom: 15px;
 }
+.add_window_input {
+    padding: 10px 50px 10px 20px;
+    font-size: 14px;
+    border: 1px solid #E7E7E7;
+    border-radius: 4px 0px 0px 4px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
 .create_btn{
     width: 20%;
     height: 100%;

@@ -9,27 +9,19 @@
 <body>
     <%- include('partials/header.ejs') %>
     <section class="add_section container">
-        <form action="/api/new" method="POST" enctype="multipart/form-data" class="form">
+        <form action="/api/blogs/new" method="POST" enctype="multipart/form-data" class="form">
             <div class="add_window">
                 <h2>Новый блог</h2>
                 <div class="log_inp">
                     <input type="text" placeholder="Введите заголовок блога" name="title">
-                    <div class="category-dropdown">
-                        <input type="text" placeholder="Выберите категорию" id="category-input" name="category">
-                        <i class="fa-solid fa-chevron-down" id="category-dropdown-icon"></i>
-                        <ul class="category-list">
-                            <li>Прогнозы в IT</li>
-                            <li>Веб-разработка</li>
-                            <li>Мобильная разработка</li>
-                            <li>Фриланс</li>
-                            <li>Алгоритмы</li>
-                            <li>Тестирование IT систем</li>
-                            <li>Разработка игр</li>
-                            <li>Дизайн и юзабилити</li>
-                            <li>Искуственный интеллект</li>
-                            <li>Машинное обучение</li>
-                        </ul>
-                    </div>
+                    <fieldset class="fieldset">
+                        <select  name="category" class="add_window_input">
+                            <option selected>Выберите категорию</option>
+                            <% categories.forEach(category => { %>
+                                <option value="<%= category._id %>"><%= category.name %></option>
+                            <%})%>
+                        </select>
+                    </fieldset>
                     <label class="choose_btn">
                         <input type="file" id="imageUpload" accept="image/*" name="image">
                         <p>Выберите картинку</p>
@@ -44,6 +36,5 @@
             </div>
         </form>
     </section>
-    <script src="/js/category.js"></script>
 </body>
 </html>

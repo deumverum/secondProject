@@ -9,41 +9,37 @@
 <body>
     <%- include('partials/header.ejs') %>
     <section class="add_section container">
-        <form action="" method="" class="form">
+        <form action="/api/blogs/edit" method="POST" class="form" enctype="multipart/form-data">
             <div class="add_window">
                 <h2>Редактирование блога</h2>
                 <div class="log_inp">
                     <input type="text" placeholder="Введите заголовок блога" name="title" value="<%= blog.title  %>">
                     <div class="category-dropdown">
-                        <input type="text" placeholder="Выберите категорию" id="category-input" name="category" value="<%= blog.category  %>>
-                        <i class="fa-solid fa-chevron-down" id="category-dropdown-icon"></i>
-                        <ul class="category-list">
-                            <li>Прогнозы в IT</li>
-                            <li>Веб-разработка</li>
-                            <li>Мобильная разработка</li>
-                            <li>Фриланс</li>
-                            <li>Алгоритмы</li>
-                            <li>Тестирование IT систем</li>
-                            <li>Разработка игр</li>
-                            <li>Дизайн и юзабилити</li>
-                            <li>Искуственный интеллект</li>
-                            <li>Машинное обучение</li>
-                        </ul>
+                        <fieldset>
+                            <input type="hidden" value="<%= blog._id %>" name="id">
+                        </fieldset>
+                        <fieldset class="fieldset">
+                            <select  name="category" class="add_window_input">
+                                <option selected>Выберите категорию</option>
+                                <% categories.forEach(category => { %>
+                                    <option value="<%= category._id %>" <%= (blog.category && blog.category.toString() === category._id.toString()) ? 'selected' : '' %>><%= category.name %></option>
+                                <% }); %>
+                            </select>
+                        </fieldset>
                     </div>
                     <label class="choose_btn">
-                        <input type="file" id="imageUpload" accept="image/*" name="image" value="<%= blog.image  %>
+                        <input type="file" id="imageUpload" accept="image/*" name="image">
                         <p>Выберите картинку</p>
                     </label>                    
-                    <input type="text" class="description-input" placeholder="Введите описание блога" name="overview">
+                    <input type="text" class="description-input" placeholder="Введите описание блога" name="overview" value="<%= blog.overview  %>">
                 </div>
                 <div class="create_btn">
                     <button class="log_button" type="submit">
-                        <p>Создать</p>
+                        <p>Сохранить</p>
                     </button>
                 </div>
             </div>
         </form>
     </section>
-    <script src="/js/category.js"></script>
 </body>
 </html>

@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const editBlogBtn = document.querySelector('.edit_blog_btn');
-    const menuOptions = document.querySelector('.menu-options');
+    const editBlogBtns = document.querySelectorAll('.edit_blog_btn');
 
-    editBlogBtn.addEventListener('click', function() {
-        menuOptions.style.display = (menuOptions.style.display === 'none') ? 'block' : 'none';
+    editBlogBtns.forEach(function(editBlogBtn) {
+        editBlogBtn.addEventListener('click', function() {
+            const menuOptions = editBlogBtn.nextElementSibling;
+            menuOptions.style.display = (menuOptions.style.display === 'none') ? 'block' : 'none';
+        });
     });
 });

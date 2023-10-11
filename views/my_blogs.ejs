@@ -43,11 +43,11 @@
                                 </div>
                                 <div class="menu-options">
                                     <div class="option edit">
-                                        <a href="/editblog">Редактировать</a>
+                                        <a href="/editblog/<%= blog.id %>">Редактировать</a>
                                     </div>
                                     <div class="option delete">
-                                        <a href="#" >Удалить</a>
-                                    </div>
+                                        <a onclick="deleteBlog('<%= blog._id %>', '<%= blog.author %>')" href="#" >Удалить</a>
+                                    </div>                                    
                                 </div>
                                 <%       
                                     }
@@ -59,11 +59,11 @@
                       <div class="view_line">
                         <div class="view_line_icon">
                             <i class="fa-regular fa-calendar"></i>
-                            <p><%= blog.created_at.toISOString() %></p>
+                            <p><%= blog.created_at.getDate() + '.' + (blog.created_at.getMonth() + 1) + '.' + blog.created_at.getFullYear() %></p>
                         </div>
                         <div class="view_line_icon">
                             <i class="fa-regular fa-eye"></i>
-                            <p>21</p>
+                            <p><%= blogViews[blog._id] %></p>
                         </div>
                         <div class="view_line_icon">
                             <i class="fa-regular fa-comment"></i>
@@ -71,11 +71,11 @@
                         </div>
                         <div class="view_line_icon">
                             <i class="fa-regular fa-comments"></i>
-                            <p><%= blog.category %></p>
+                            <p><%= blog.category ? blog.category.name : 'Нет категории' %></p>
                         </div>
                         <div class="view_line_icon">
                             <i class="fa-regular fa-user"></i>
-                            <p>Nast1289</p>
+                            <p><%=user.full_name %></p>
                         </div>
                     </div>
                     <% }); %>
@@ -90,7 +90,7 @@
             </div>
             <p class="bold"><%=user.full_name %></p>
             <p>В основном пишу про веб - разработку, на React & Redux</p>
-            <p>285 постов за все время</p>
+            <p><%= blogCount %> постов за все время</p>
             <% 
             if(loginUser._id == user.id){                       
             %> 
@@ -106,7 +106,8 @@
             %>
         </div>
     </section>
-    <!-- <script src="/js/formatDate.js"></script> -->
-    <script src="/js/editblog.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js" integrity="sha512-emSwuKiMyYedRwflbZB2ghzX8Cw8fmNVgZ6yQNNXXagFzFOaQmbvQ1vmDkddHjm5AITcBIZfC7k4ShQSjgPAmQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/deleteBlog.js"></script>
+    <script src="/js/editBlog.js"></script>
 </body>
 </html>

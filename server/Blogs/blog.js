@@ -17,6 +17,10 @@ const BlogSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'users',
     },
+    views: {
+        type: Number,
+        default: 0
+    },
     created_at: { type: Date, default: Date.now },
 });
 
