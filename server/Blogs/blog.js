@@ -15,7 +15,7 @@ const BlogSchema = new mongoose.Schema({
     overview: String,
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'users',
+        ref: 'User',
     },
     views: {
         type: Number,

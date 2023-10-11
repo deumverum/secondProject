@@ -6,10 +6,39 @@ const Blog = require('../Blogs/blog');
 const moment = require('moment');
 
 
-router.get('/programmingblog', async(req, res) => {
-    const allCategories = await Categories.find()
-    res.render('programming_blog.ejs', { pageName: 'programming_blog', Categories: allCategories , user: req.user ? req.user : {}});
+router.get('/programmingblog', async (req, res) => {
+    const allCategories = await Categories.find();
+    
+    const blogs = await Blog.find()
+        .populate('category')
+        .populate('author')
+        .sort({ created_at: -1 });
+    
+    const blogCount = blogs.length;
+    const blogViews = {};
+    for (const blog of blogs) {
+        blogViews[blog._id] = blog.views;
+    }
+
+    for (const blog of blogs) {
+        blog.views += 1;
+        await blog.save();
+    }
+
+    res.render('programming_blog.ejs', {
+        pageName: 'programming_blog',
+        user: req.user || {},
+        loginUser: req.user || {},
+        blogs: blogs,
+        Categories: allCategories,
+        blogViews: blogViews,
+        blogCount: blogCount
+    });
 });
+
+
+
+
 
 router.get('/login', (req, res) => {
     const { message } = req.query;
@@ -23,11 +52,17 @@ router.get('/register', (req, res) => {
 
 
 router.get('/myblogs/:id', async (req, res) => {
-    const allCategories = await Categories.find()
+    const allCategories = await Categories.find();
     const user = await User.findById(req.params.id);
+
+    if (req.user) {
+        user.full_name = req.user.full_name;
+    }
+
     if (user) {
         const blogs = await Blog.find({ author: user.id })
             .populate('category')
+            .populate('author')
             .sort({ created_at: -1 });
         
         const blogCount = blogs.length;
@@ -55,6 +90,7 @@ router.get('/myblogs/:id', async (req, res) => {
         res.redirect('/not-found');
     }
 });
+
 
 router.get('/addnewblog', async(req, res) => {
     const allCategories = await Categories.find()
