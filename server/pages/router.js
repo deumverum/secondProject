@@ -112,23 +112,4 @@ router.get('/not-found' , (req , res) => {
     res.render('notfound')
 })
 
-router.delete('/deleteblog/:blogId/:authorId', async (req, res) => {
-    try {
-        const deletedBlog = await Blog.findByIdAndRemove(req.params.blogId);
-
-        if (deletedBlog) {
-            // Успешное удаление блога
-            return res.json({ success: true, userId: req.user.id });
-        } else {
-            // В случае, если блог не был найден
-            return res.json({ success: false });
-        }
-    } catch (error) {
-        console.error(error);
-        // В случае ошибки при запросе к базе данных
-        return res.json({ success: false });
-    }
-});
-
-
 module.exports = router

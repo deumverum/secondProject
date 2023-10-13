@@ -1,7 +1,7 @@
 function deleteBlog(blogId, authorId) {
     if (confirm('Вы уверены, что хотите удалить этот блог?')) {
         axios
-            .delete(`/deleteblog/${blogId}/${authorId}`)
+            .delete(`/api/blogs/delete/${blogId}`)
             .then((response) => {
                 if (response.data.success) {
                     alert('Блог успешно удален');
