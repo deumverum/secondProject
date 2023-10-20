@@ -103,10 +103,26 @@ router.get('/editblog/:id', async(req, res) => {
     res.render('edit_blog.ejs', { pageName: 'edit_blog', user: req.user ? req.user : {}, blog: blog, categories: allCategories });    
 });
 
-router.get('/serf', async(req, res) => {
-    const allCategories = await Categories.find()
-    res.render('serf.ejs', { pageName: 'serf' , Categories: allCategories , user: req.user ? req.user : {}});
+router.get('/blog_details/:id', async (req, res) => {
+    const allCategories = await Categories.find();
+    const blog = await Blog.findById(req.params.id);
+
+    if (!blog) {
+        return res.status(404).send('Блог не найден');
+    }
+
+    const blogViews = blog.views + 1; 
+
+    await Blog.findByIdAndUpdate(req.params.id, { views: blogViews }); 
+    res.render('blog_details.ejs', {
+        user: req.user || {},
+        loginUser: req.user || {},
+        blog: blog,
+        Categories: allCategories,
+        blogViews: blogViews,
+    });
 });
+
 
 router.get('/not-found' , (req , res) => {
     res.render('notfound')
