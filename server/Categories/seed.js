@@ -18,10 +18,14 @@ async function writeDataCategory() {
     if (length === 0) {
         for (let index = 0; index < data.length; index++) {
             const item = data[index];
-            await new Categories({
+            const category = new Categories({
                 name: item,
                 key: index
-            }).save();
+            });
+            category.save();
+
+            category.id = category._id;
+            await category.save();
         }
         console.log('Данные сохранены в базу данных.');
     } else {
@@ -30,4 +34,3 @@ async function writeDataCategory() {
 }
 
 module.exports = writeDataCategory;
-

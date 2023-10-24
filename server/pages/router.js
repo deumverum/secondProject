@@ -8,12 +8,22 @@ const moment = require('moment');
 
 router.get('/programmingblog', async (req, res) => {
     const allCategories = await Categories.find();
-    
-    const blogs = await Blog.find()
-        .populate('category')
-        .populate('author')
-        .sort({ created_at: -1 });
-    
+
+    const catId = req.query.catId;
+
+    let blogs;
+    if (catId) {
+        blogs = await Blog.find({ category: catId })
+            .populate('category')
+            .populate('author')
+            .sort({ created_at: -1 });
+    } else {
+        blogs = await Blog.find()
+            .populate('category')
+            .populate('author')
+            .sort({ created_at: -1 });
+    }
+
     const blogCount = blogs.length;
     const blogViews = {};
     for (const blog of blogs) {
@@ -32,9 +42,11 @@ router.get('/programmingblog', async (req, res) => {
         blogs: blogs,
         Categories: allCategories,
         blogViews: blogViews,
-        blogCount: blogCount
+        blogCount: blogCount,
+        catId: catId
     });
 });
+
 
 
 
@@ -105,7 +117,9 @@ router.get('/editblog/:id', async(req, res) => {
 
 router.get('/blog_details/:id', async (req, res) => {
     const allCategories = await Categories.find();
-    const blog = await Blog.findById(req.params.id);
+    const blog = await Blog.findById(req.params.id)
+        .populate('category')
+        .populate('author');
 
     if (!blog) {
         return res.status(404).send('Блог не найден');
