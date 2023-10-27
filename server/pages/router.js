@@ -23,13 +23,11 @@ router.get('/programmingblog', async (req, res) => {
     let query = {};
 
     if (searchQuery) {
-        query = {
-            $or: [
-                { title: { $regex: searchQuery, $options: 'i' } },
-                { overview: { $regex: searchQuery, $options: 'i' } },
-                { category: { $regex: searchQuery, $options: 'i' } }
+        query.$or = [
+                { title: new RegExp(searchQuery, 'i') },
+                { overview: new RegExp(searchQuery, 'i') },
             ]
-        };
+       
     } else if (catId) {
         query = { category: catId };
     }
