@@ -8,17 +8,31 @@ const moment = require('moment');
 
 router.get('/programmingblog', async (req, res) => {
     const allCategories = await Categories.find();
-
     const catId = req.query.catId;
+    const limit = 3;
+    let page = 1; 
+    let skip = page * limit; 
+
+    const totalBlogs = await Blog.count();
+    console.log(totalBlogs);
+
+    if (req.query.page && req.query.page > 0) {
+        page = parseInt(req.query.page);
+        skip = (page - 1) * limit;
+    }
 
     let blogs;
     if (catId) {
         blogs = await Blog.find({ category: catId })
+            .limit(limit)
+            .skip(skip)
             .populate('category')
             .populate('author')
             .sort({ created_at: -1 });
     } else {
         blogs = await Blog.find()
+            .limit(limit)
+            .skip(skip)
             .populate('category')
             .populate('author')
             .sort({ created_at: -1 });
@@ -43,13 +57,10 @@ router.get('/programmingblog', async (req, res) => {
         Categories: allCategories,
         blogViews: blogViews,
         blogCount: blogCount,
-        catId: catId
+        catId: catId,
+        pages: Math.ceil(totalBlogs / limit)
     });
 });
-
-
-
-
 
 
 router.get('/login', (req, res) => {

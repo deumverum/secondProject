@@ -23,9 +23,6 @@ async function writeDataCategory() {
                 key: index
             });
             category.save();
-
-            category.id = category._id;
-            await category.save();
         }
         console.log('Данные сохранены в базу данных.');
     } else {
