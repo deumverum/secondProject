@@ -57,14 +57,10 @@
                     <p>Нет созданных блогов</p>
                 <% } %>      
                 <div class="pages">
-                    <% 
-                        for(let i = 0 ; i < pages; i++){
-                    %> 
-                        <a href="?page= <%= i %>"><%= i + 1 %></a>
-                    <%  
-                        }
-                    %>
-                </div>            
+                    <% for (let i = 1; i <= pages; i++) { %>
+                        <a href="?page=<%= i %>&catId=<%= catId %>&search=<%= searchQuery %>"><%= i %></a>
+                    <% } %>
+                </div>             
             </div>            
         </div>
         <div class="right_side_prg"> 

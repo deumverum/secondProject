@@ -10,36 +10,42 @@ router.get('/programmingblog', async (req, res) => {
     const allCategories = await Categories.find();
     const catId = req.query.catId;
     const limit = 3;
-    let page = 1; 
-    let skip = page * limit; 
-
-    const totalBlogs = await Blog.count();
-    console.log(totalBlogs);
+    let page = 1;
+    const searchQuery = req.query.search;
 
     if (req.query.page && req.query.page > 0) {
         page = parseInt(req.query.page);
-        skip = (page - 1) * limit;
     }
 
-    let blogs;
-    if (catId) {
-        blogs = await Blog.find({ category: catId })
-            .limit(limit)
-            .skip(skip)
-            .populate('category')
-            .populate('author')
-            .sort({ created_at: -1 });
-    } else {
-        blogs = await Blog.find()
-            .limit(limit)
-            .skip(skip)
-            .populate('category')
-            .populate('author')
-            .sort({ created_at: -1 });
+    let skip = (page - 1) * limit;
+    let blogs = [];
+
+    let query = {};
+
+    if (searchQuery) {
+        query = {
+            $or: [
+                { title: { $regex: searchQuery, $options: 'i' } },
+                { overview: { $regex: searchQuery, $options: 'i' } },
+                { category: { $regex: searchQuery, $options: 'i' } }
+            ]
+        };
+    } else if (catId) {
+        query = { category: catId };
     }
+
+    const totalBlogs = await Blog.count(query);
+
+    blogs = await Blog.find(query)
+        .limit(limit)
+        .skip(skip)
+        .populate('category')
+        .populate('author')
+        .sort({ created_at: -1 });
 
     const blogCount = blogs.length;
     const blogViews = {};
+
     for (const blog of blogs) {
         blogViews[blog._id] = blog.views;
     }
@@ -58,9 +64,13 @@ router.get('/programmingblog', async (req, res) => {
         blogViews: blogViews,
         blogCount: blogCount,
         catId: catId,
+        searchQuery: searchQuery,
         pages: Math.ceil(totalBlogs / limit)
     });
 });
+
+
+
 
 
 router.get('/login', (req, res) => {
