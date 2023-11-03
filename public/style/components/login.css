@@ -45,4 +45,28 @@
     color: white;
     padding: 12px;
     height: 100%;
+    margin-bottom: 15px;
+}
+
+.inlog_btn button git{
+    background-color: #2a3438;
+    width: 100%;
+}
+
+.git_btn{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+}
+
+.git_button{
+    color: white;
+    padding: 12px;
+    height: 100%;
+    margin-bottom: 15px;
+}
+
+.git_btn button{
+    background-color: #2a3438;
+    width: 100%;
 }

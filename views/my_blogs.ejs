@@ -32,7 +32,7 @@
                       <div class="blog">
                         <img src="<%= blog.image %>" alt="">
                         <div class="edit_blog">
-                            <h3><%= blog.title %></h3>
+                            <a href="/blog_details/<%= blog._id %>"><%= blog.title %></a>
                             <div class="menu-container">
                                 <% 
                                 if(loginUser._id == user.id){                       

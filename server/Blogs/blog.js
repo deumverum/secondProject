@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema; 
+const Schema = mongoose.Schema;
 
 const BlogSchema = new mongoose.Schema({
     title: String,
@@ -19,10 +19,9 @@ const BlogSchema = new mongoose.Schema({
     },
     views: {
         type: Number,
-        default: 0
+        default: 0,
     },
     created_at: { type: Date, default: Date.now },
 });
-
 
 module.exports = mongoose.model('blog', BlogSchema);

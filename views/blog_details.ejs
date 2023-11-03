@@ -50,41 +50,25 @@
                 </div>
             </div>            
             <div class="blog_foot">
-                <h3>2 коментария</h3>
-                <div class="blog_comments">
-                    <div class="profile_info_com">
-                        <div>
-                            <img src="/img/avatar1.jpg" alt="">
-                        </div>
-                        <h3>Елнур Сеитжанов</h3>
-                    </div>
-                    <p>
-                        В отличие от обычных виджетов пользовательского интерфейса JavaScript, комплексные виджеты - это полноценные приложения, которые не требуют дополнительной настройки и кастомизации.
-                    </p>
-                </div>
-                <div class="com_line"></div>
-                <div class="blog_comments">
-                    <div class="profile_info_com">
-                        <div>
-                            <img src="/img/avatar1.jpg" alt="">
-                        </div>
-                        <h3>Елнур Сеитжанов</h3>
-                    </div>
-                    <p>
-                        В отличие от обычных виджетов пользовательского интерфейса JavaScript, комплексные виджеты - это полноценные приложения, которые не требуют дополнительной настройки и кастомизации.
-                    </p>
+                <h3>Комментарии</h3>
+                <div id="comments-container">
+                    <!-- Здесь будут отображаться комментарии -->
                 </div>
                 <% if (user && user._id) { %>
                     <div class="add_comment">
-                        <input type="text" placeholder="Введите текст комментария">
-                        <button>Отправить</button>
+                        <form id="comment-form">
+                            <input type="hidden" name="author" value="<%= user._id %>">
+                            <input type="hidden" name="blog" value="<%= blog._id %>">
+                            <input type="text" name="text" placeholder="Введите текст комментария">
+                            <button type="submit">Отправить</button>
+                        </form>
                     </div>
                 <% } else { %>
                     <div class="regorlog_message">
                         <p>Чтобы оставить комментарий, <a href="/register">зарегистрируйтесь</a> или <a href="/login">войдите</a> в аккаунт</p>
                     </div>
                 <% } %>                
-            </div>
+            </div>            
         </div>
         <div class="right_side_prg"> 
             <h2>Категории</h2>
@@ -96,7 +80,8 @@
                 </ul>
             </div>
         </div>
-
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/addComment.js"></script>
 </body>
 </html>

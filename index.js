@@ -10,6 +10,7 @@ require('./server/config/passport')
 
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 app.use(session({
     name: 'decode.session',
     secret: 'keyboard cat',
@@ -29,6 +30,7 @@ app.use(require('./server/Categories/router'))
 app.use(require('./server/auth/router'))
 const authRouter = require('./server/auth/router');
 app.use(require('./server/Blogs/router'))
+app.use(require('./server/Commentaries/router'))
 app.use(authRouter);
 
 
