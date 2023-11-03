@@ -23,6 +23,7 @@ passport.use(
             // Если пользователь не существует, создайте нового пользователя
             const newUser = new User({
               githubId: profile.id,
+              full_name: profile.username,
               // Другие поля профиля, которые вы хотите сохранить
             });
   

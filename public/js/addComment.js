@@ -5,6 +5,12 @@ console.log('ok');
 const commentsContainer = document.getElementById('comments-container');
 const commentForm = document.getElementById('comment-form');
 
+let allUrl =  window.location.href
+let result = window.location.href.split('/').reverse()[0]
+
+loadComments(result);
+
+
 commentForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -18,7 +24,7 @@ commentForm.addEventListener('submit', function (e) {
             // Очистите поле ввода комментария
             this.querySelector("input[name='text']").value = '';
             // Загрузите комментарии после добавления
-            loadComments(blog);
+            location.reload()
         } else {
             console.error('Ошибка при добавлении комментария:', response.data.message);
         }
