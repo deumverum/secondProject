@@ -12,11 +12,32 @@ passport.use(
         clientSecret: '0292e50c4b6338c77ce62357dcb437e06d1710c3',
         callbackURL: '/auth/github/callback', 
       },
-      (accessToken, refreshToken, profile, done) => {
-
+      async (accessToken, refreshToken, profile, done) => {
+        try {
+          // Используйте функцию findOne без обратного вызова
+          const user = await User.findOne({ githubId: profile.id });
+          if (user) {
+            // Если пользователь уже существует, войдите в систему
+            return done(null, user);
+          } else {
+            // Если пользователь не существует, создайте нового пользователя
+            const newUser = new User({
+              githubId: profile.id,
+              // Другие поля профиля, которые вы хотите сохранить
+            });
+  
+            // Сохраните нового пользователя в базе данных
+            await newUser.save();
+            return done(null, newUser);
+          }
+        } catch (err) {
+          return done(err);
+        }
       }
     )
   );
+  
+  
 
 passport.use(new localStrategy(
     {
