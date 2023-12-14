@@ -6,8 +6,7 @@ const Blog = require('../Blogs/blog');
 const moment = require('moment');
 const Comment = require('../Commentaries/Commentaries')
 
-
-router.get('/programmingblog', async (req, res) => {
+router.get('/', async (req, res) => {
     const allCategories = await Categories.find();
     const catId = req.query.catId;
     const limit = 3;
@@ -67,6 +66,68 @@ router.get('/programmingblog', async (req, res) => {
         pages: Math.ceil(totalBlogs / limit)
     });
 });
+
+
+// router.get('/programmingblog', async (req, res) => {
+//     const allCategories = await Categories.find();
+//     const catId = req.query.catId;
+//     const limit = 3;
+//     let page = 1;
+//     const searchQuery = req.query.search;
+
+//     if (req.query.page && req.query.page > 0) {
+//         page = parseInt(req.query.page);
+//     }
+
+//     let skip = (page - 1) * limit;
+//     let blogs = [];
+
+//     let query = {};
+
+//     if (searchQuery) {
+//         query.$or = [
+//                 { title: new RegExp(searchQuery, 'i') },
+//                 { overview: new RegExp(searchQuery, 'i') },
+//             ]
+       
+//     } else if (catId) {
+//         query = { category: catId };
+//     }
+
+//     const totalBlogs = await Blog.count(query);
+
+//     blogs = await Blog.find(query)
+//         .limit(limit)
+//         .skip(skip)
+//         .populate('category')
+//         .populate('author')
+//         .sort({ created_at: -1 });
+
+//     const blogCount = blogs.length;
+//     const blogViews = {};
+
+//     for (const blog of blogs) {
+//         blogViews[blog._id] = blog.views;
+//     }
+
+//     for (const blog of blogs) {
+//         blog.views += 1;
+//         await blog.save();
+//     }
+
+//     res.render('programming_blog.ejs', {
+//         pageName: 'programming_blog',
+//         user: req.user || {},
+//         loginUser: req.user || {},
+//         blogs: blogs,
+//         Categories: allCategories,
+//         blogViews: blogViews,
+//         blogCount: blogCount,
+//         catId: catId,
+//         searchQuery: searchQuery,
+//         pages: Math.ceil(totalBlogs / limit)
+//     });
+// });
 
 
 
@@ -136,26 +197,41 @@ router.get('/editblog/:id', async(req, res) => {
 });
 
 router.get('/blog_details/:id', async (req, res) => {
-    const allCategories = await Categories.find();
-    const blog = await Blog.findById(req.params.id)
-        .populate('category')
-        .populate('author');
+    try {
+        const allCategories = await Categories.find();
+        const blog = await Blog.findById(req.params.id)
+            .populate('category')
+            .populate('author')
+            .populate('comments');
 
-    if (!blog) {
-        return res.status(404).send('Блог не найден');
+        if (!blog) {
+            return res.status(404).send('Блог не найден');
+        }
+
+        const blogViews = blog.views + 1;
+
+        await Blog.findByIdAndUpdate(req.params.id, { views: blogViews });
+
+        // Добавим вывод в консоль для отладки
+        console.log('Blog Comments:', blog.comments);
+
+        res.render('blog_details.ejs', {
+            user: req.user || {},
+            loginUser: req.user || {},
+            blog: blog,
+            Categories: allCategories,
+            blogViews: blogViews,
+            comments: blog.comments,
+        });
+
+        console.log('Comments:', blog.comments);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Произошла ошибка');
     }
-
-    const blogViews = blog.views + 1; 
-
-    await Blog.findByIdAndUpdate(req.params.id, { views: blogViews }); 
-    res.render('blog_details.ejs', {
-        user: req.user || {},
-        loginUser: req.user || {},
-        blog: blog,
-        Categories: allCategories,
-        blogViews: blogViews,
-    });
 });
+
+
 
 
 router.get('/not-found' , (req , res) => {

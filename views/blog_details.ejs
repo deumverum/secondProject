@@ -37,7 +37,7 @@
                     </div>
                     <div class="view_line_icon">
                         <i class="fa-regular fa-comment"></i>
-                        <p>4</p>
+                        <p></p>
                     </div>
                     <div class="view_line_icon">
                         <i class="fa-regular fa-comments"></i>
@@ -52,11 +52,20 @@
             <div class="blog_foot">
                 <h3>Комментарии</h3>
                 <div id="comments-container">
-                    <!-- Здесь будут отображаться комментарии -->
-                </div>
+                    <% if (Array.isArray(comments) && comments.length > 0) { %>
+                        <% comments.forEach(comment => { %>
+                            <div class="comment">
+                                <p><%= comment.author.full_name || 'Аноним' %></p>
+                                <p><%= comment.text %></p>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <p>Нет комментариев</p>
+                    <% } %>
+                </div>                
                 <% if (user && user._id) { %>
                     <div class="add_comment">
-                        <form id="comment-form">
+                        <form id="comment-form" method="POST" action="/addComment">
                             <input type="hidden" name="author" value="<%= user._id %>">
                             <input type="hidden" name="blog" value="<%= blog._id %>">
                             <input type="text" name="text" placeholder="Введите текст комментария">

@@ -10,7 +10,7 @@ exports.addComment = async (req, res) => {
         if (!text || text.trim() === '') {
             return res.status(400).json({ success: false, message: 'Текст комментария не может быть пустым' });
         }
-
+        
         const newComment = new Comment({
             text,
             author,
@@ -31,14 +31,17 @@ exports.getComments = async (req, res) => {
     try {
         const blogId = req.params.blogId;
 
+        console.log('Requested Blog ID:', blogId);
+        
         const comments = await Comment.find({ blog: blogId }).populate('author');
 
         res.json({ success: true, comments: comments });
     } catch (error) {
         console.error('Ошибка при получении комментариев:', error);
-        res.status(500).json({ success: false, message: 'Произошла ошибка при получении комментариев' });
+        res.status(500).json({ success: false, message: 'Произошла ошибка при получении комментариев', error: error.message });
     }
 };
+
 
 // exports.loadComments = async (req, res) => {
 //     try {
